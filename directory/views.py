@@ -12,6 +12,7 @@ class CategoryView(generic.ListView, generic.CreateView):
 
     def get_context_data(self, **kwargs):
         self.object = []
+        self.object_list = self.get_queryset()
         kwargs['category_list'] = Category.objects.all()
         kwargs['form'] = CategoryForm
         return super().get_context_data(**kwargs)
