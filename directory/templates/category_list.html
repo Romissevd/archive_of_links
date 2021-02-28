@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Category List</h1>
+    <form action="{% url 'category' %}" class="category" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add" class="button">
+    </form>
+    {% if category_list %}
+        <ul>
+            {% for category in category_list %}
+                <li>
+                    {{ category }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no category.</p>
+    {% endif %}
+{% endblock %}
