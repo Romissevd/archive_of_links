@@ -17,3 +17,7 @@ class CategoryView(LoginRequiredMixin, generic.ListView, generic.CreateView):
         kwargs['category_list'] = Category.objects.all()
         kwargs['form'] = CategoryForm
         return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(CategoryView, self).form_valid(form)

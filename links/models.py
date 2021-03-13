@@ -12,5 +12,5 @@ class Link(models.Model):
     category = models.ForeignKey('directory.Category', on_delete=models.PROTECT)
     is_published = models.BooleanField(default=False)
     published_at = models.DateTimeField(null=True, blank=True)
-    publisher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL)
+    publisher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='links_public')
+    author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='links_author')

@@ -5,12 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="/directory/category/">Category</a></li>
-        <li><a href="/links/">Links</a></li>
-    </ul>
-</nav>
-{% block content %}{% endblock %}
+
+<div class="user">
+    {% if user.is_authenticated %}
+        <nav>
+            <ul>
+                <li><a href="/directory/category/">Category</a></li>
+                <li><a href="/links/">Links</a></li>
+            </ul>
+        </nav>
+        {{ user }}
+        <form action="{% url 'logout' %}">
+            <input type="submit" value="Logout">
+        </form>
+        {% block content %}{% endblock %}
+    {% else %}
+        <p>You don't have permissions. Please, <a href="{% url 'sign_in' %}">sign in.</a></p>
+    {% endif %}
+</div>
 </body>
 </html>
