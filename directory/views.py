@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 from .forms import CategoryForm
 from .models import Category
 
 
-class CategoryView(generic.ListView, generic.CreateView):
+class CategoryView(LoginRequiredMixin, generic.ListView, generic.CreateView):
     template_name = 'category_list.html'
     form_class = CategoryForm
     model = Category

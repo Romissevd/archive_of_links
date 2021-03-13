@@ -1,0 +1,28 @@
+{#{% extends "base.html" %}#}
+<div class="login">
+    <h1>Login</h1>
+    <div class="errors">
+    {% if errors %}
+        <ul>
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <form action="{% url 'sign_in' %}" method="post">
+        {% csrf_token %}
+
+        <div class="field">
+            {{ form.login.errors }}
+            <label id="id_email">Login:</label>
+            {{ form.login }}
+        </div>
+        <div class="field">
+            {{ form.password.errors }}
+            <label id="id_password">Password:</label>
+            {{ form.password }}
+        </div>
+        <input type="submit" value="Login" class="button">
+    </form>
+</div>
